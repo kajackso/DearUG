@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="format.css">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
+
     <div class="wrapper">
-        <h2>Login</h2>
+        <h1>Login</h1>
+
+        <h2>
+        <a href="Main.html">Home</a>
+        <a href="createPost.html">New</a>
+        <a href="Tags.html">Tags</a>
+        <form action="Search.html">
+          <input type="text" id="fname" name="fname" placeholder="Search">
+          <input type="submit" value="Submit">
+        </form>
+        <a href="logintest.html">Login</a>
+        <a href="Register.html">Register</a>
+        </h2>
+
         <p>Please fill in your credentials to login.</p>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+
+        <form method="post" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>
+            <div class="form-group" action=<?php echo (!empty($username_err)) ? 'has-error' : ''; ?>
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" name="username" class="form-control" placeholder="Username">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+
+
+            <div class=form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>
                 <label>Password</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password" class="form-control" placeholder="Password">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
+
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+
+            <p>Don't have an account? <a href="Register.html">Sign up now</a>.</p>
+
         </form>
     </div>
 </body>

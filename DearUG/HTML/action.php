@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>Connect to MariaDB Server</title>
+      <title>Connect to DB Server</title>
    </head>
 
    <body>
