@@ -9,22 +9,20 @@
         try {
             $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
             if(isset($_POST["userName"])) {
-                if(isset($_POST["E-mail"])){
+                if(isset($_POST["email"])){
                     if(isset($_POST["pass"])){
                         if(isset($_POST["Major"])){
                             if(isset($_POST["GradDate"])){
-                              $userName = $_POST["userName"];
-                              $eMail = $_POST["E-mail"];
-                              $pass = $_POST["pass"];
-                              $Major = $_POST["Major"];
-                              $GradDate = $_POST["GradDate"];
-
+                              echo $_POST['userName'];
+                              $statement = $dbconnect -> prepare("CALL newUser(:userName, :email, :pass, :Major, :GradDate)");
+                              $result = $statement -> execute(array(':userName'=> $_POST['userName'], ':email'=>$_POST['email'], ':pass'=>$_POST['pass'], ':Major'=>$_POST['Major'], ':GradDate'=>$_POST['GradDate']));
+                              header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
                             }
                         }
                     }
                 }
             } else {
-              echo "missing field";
+
             }
         }
 
@@ -44,11 +42,11 @@
     <a href="register.php">Register</a>
   </h2>
 
-  <form action="/createAccount.php">
+  <form method=post action=register.php>
     <label for="userName">Username:</label>
     <input type="text" id="userName" name="userName"><br><br>
-    <label for="E-mail">Email:</label>
-    <input type="text" id="e-mail" name="e-mail"><br><br>
+    <label for="Email">Email:</label>
+    <input type="text" id="email" name="email"><br><br>
     <label for="GradDate">Graduation Date:</label>
     <input type="text" id="GradDate" name="GradDate"><br><br>
     <label for="Major">Major:</label>
