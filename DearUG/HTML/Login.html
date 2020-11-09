@@ -3,12 +3,16 @@
 <link rel="stylesheet" href="format.css">
   <body>
 
-    <h1>Login</h1>
+
+  <h1>Login</h1>
+
+
+  <!-- Bar at top of screen -->
     <h2>
       <a href="Main.html">Home</a>
       <a href="Tags.html">Tags</a>
       <form action="Search.html">
-        <input type="text" id="fname" name="fname">
+        <input type="text" id="fname" name="fname" placeholder="Search">
         <input type="submit" value="Submit">
       </form>
       <a href="Login.html">Login</a>
@@ -16,14 +20,12 @@
     </h2>
 
 
-
-
-  <form action="action.php">
+  <form action="action.php" method="get">
     <label for="userName">Username:</label>
-    <input type="text" id="userName" name="userName"><br><br>
+    <input type="text" id="userName" name="userName" placeholder="Username"><br><br>
     <label for="pass">Password:</label>
-    <input type="password" id="pass" name="pass"><br><br>
-    <input type="submit" value="Submit">
+    <input type="password" id="pass" name="pass" placeholder="Password"><br><br>
+    <input type="submit" value="Submit" id="Login">
   </form>
 
 

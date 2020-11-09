@@ -45,3 +45,9 @@ form {
   line-height:25px;
   padding-right:7px;
 }
+
+div.form {
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+}
