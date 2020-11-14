@@ -23,27 +23,34 @@
 		
         try {
 			$dbconnect = new PDO($dbhost, $dbuser, $dbpass);
+			
+			//Testing, delete later
+			//var_dump($_POST);
+			
 			$search = $_POST["search"];
-			if(!isset($search)){
-				echo 'fname not given';
-			} else {
-				//Testing, delete later 
-				echo $search;
+			if(isset($_POST['search'])){
+				
+				//Testing $search = General
+				//echo $search;
 				
 				//$statement = $dbconnect -> prepare("CALL search(:search)");
 				//$result = $statement -> execute(array(':search'=> $_POST['search']));
 				
-				$sql = 'CALL search("$search")' ;
+				$sql = ' select* from tags where tagName = "$search"; ';
 				$result = $dbconnect->query($sql);
-				//$query = mysql_query('CALL search('$_POST["search"]')');
-				//$row = mysql_num_rows($query);
-			
-				//while($result = mysql_fetch_array($statement)){
-				while($row = $result->fetch(PDO::FETCH_ASSOC)){
-					$id = $row["$search"];
 				
-					echo $id;
+				//$query = mysql_query(" CALL search('$search'); ");
+				//$num_rows = mysql_num_rows($query);
+				foreach($result as $row){
+					echo "results";
+					//$id = $row['tag'];
+					//echo $id;
+					echo $row[0];
 				}
+				
+				
+			} else {
+				echo 'No Results: var not given';
 			}
 		}
 			
