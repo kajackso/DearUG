@@ -33,12 +33,13 @@
   <h1>Login</h1>
   <h2>
     <a href="Main.html">Home</a>
+    <a href="createPost.html">New</a>
     <a href="Tags.html">Tags</a>
-    <form action="Search.html">
-      <input type="text" id="fname" name="fname">
+    <form action="search.php">
+      <input type="text" id="fname" name="fname" placeholder="Search">
       <input type="submit" value="Submit">
     </form>
-    <a href="Login.html">Login</a>
+    <a href="logintest.html">Login</a>
     <a href="register.php">Register</a>
   </h2>
 
