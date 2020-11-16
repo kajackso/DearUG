@@ -36,22 +36,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         echo "<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>  Comment</button>";
         echo "</div>";
       }
-      // One Iteration
-      // <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-      //   <!-- Display Username of Post Writer -->
-      //   <h2>Funny Post Title! Haha!</h2><br>
-
-      //   <body>submitted by testUser on 11/14/2020</body><br>
-
-
-      //   <!-- Like Button -->
-      //   <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-
-      //   <!-- Comment Button -->
-      //   <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-      // </div>
-
-
   echo "</body>";
 ?>
 
