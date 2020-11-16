@@ -7,6 +7,7 @@
         $dbuser = 'fisforsuccess_rw';
         $dbpass = 'success123';
         try {
+            // Attempt to connect to database. Check if username, email, password, major, and graddate are all populated.
             $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
             if(isset($_POST["userName"])) {
                 if(isset($_POST["email"])){
@@ -14,15 +15,15 @@
                         if(isset($_POST["Major"])){
                             if(isset($_POST["GradDate"])){
                               echo $_POST['userName'];
+                              // All of the information is populated correctly. We can create a new user using the newUser procedure. Uses a prepared statement to avoid SQL injection.
                               $statement = $dbconnect -> prepare("CALL newUser(:userName, :email, :pass, :Major, :GradDate)");
                               $result = $statement -> execute(array(':userName'=> $_POST['userName'], ':email'=>$_POST['email'], ':pass'=>$_POST['pass'], ':Major'=>$_POST['Major'], ':GradDate'=>$_POST['GradDate']));
+                              // Take the user to the login page.
                               header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
                             }
                         }
                     }
                 }
-            } else {
-
             }
         }
 
@@ -30,6 +31,9 @@
             die("ERROR: " . $error . "<br/>");
         }
     ?>
+
+
+  <!-- HTML code -->
   <h1>Login</h1>
   <h2>
     <a href="Main.html">Home</a>
