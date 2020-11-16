@@ -8,14 +8,17 @@
 // Initialize the session
 session_start();
 
+$dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
+$dbuser = 'fisforsuccess_rw';
+$dbpass = 'success123';
+
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: Main.html");
     exit;
 }
 
-// Include config file
-require_once "config.php";
+
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -92,6 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 }
+
 ?>
 </body>
 </html>
