@@ -13,6 +13,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
 
 <?php
+  // Establishing a connection to DB
   $dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
   $dbuser = 'fisforsuccess_rw';
   $dbpass = 'success123';
@@ -22,16 +23,23 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   catch (PDOException $error) {
     die("ERROR: " . $error . "<br/>");
   }
+
+  // Individual post format.
   echo "<body class=\"post\">";
-      // Loop and display each post in the main html.
+      // Loop and display each post in the main html. Note "as $row" , which is an array. $row[0] corresponds to the name, $row[1] correspond to date, etc etc...
       foreach($dbconnect->query("SELECT name, date, username, description, thumbsUp, thumbsDown FROM post") as $row) {
-        // New divisor 
+        // Formatting for new post. This is from the old post.html
         echo "<div class=\"w3-container w3-card w3-white w3-round w3-margin\"><br>";
+
+        // Post title.
         echo "<h2>" .$row[0]. "</h2><br>";
         // Description
         echo "<h3>" .$row[3]. "</h3><br>";
+
+        // "submitted by [username] on [date]"
         echo "<body>submitted by ".$row[2]." on ".$row[1]. "</body><br>";
 
+        // Display a like and comment button below each post. This may need to change to give them unique IDs. We will find out soon.
         echo "<button type=\"button\" class=\"w3-button w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>  Like</button>";
         echo "<button type=\"button\" class=\"w3-button w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>  Comment</button>";
         echo "</div>";
