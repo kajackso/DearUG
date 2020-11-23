@@ -7,10 +7,11 @@
 
 
     <h1>New Post</h1>
+    <!--Banner, links to other pages -->
     <h2>
       <a href="Main.html">Home</a>
       <a href="createPost.html">New</a>
-      <a href="Tags.html">Tags</a>
+      <!--<a href="Tags.html">Tags</a>-->
       <form action="search.php">
         <input type="text" id="fname" name="fname" placeholder="Search">
         <input type="submit" value="Submit">
@@ -29,22 +30,27 @@
 
 <?php
 
+    //Specifies login information for the database
     $dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
     $dbuser = 'fisforsuccess_rw';
     $dbpass = 'success123';
 
+    //Attempts to connect to the database
     try {
       $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
 
+      //Creating the variables to be used
       $title = $_POST["title"];
       $content = $_POST["content"];
-      $date = strtotime(time, now);
-      //echo "Created date is " . date("Y-m-d h:i:sa", $date);
+      $username = "User" //Will change to match logged in profile if website is not logged in
 
-      /* $statement = $dbconnect -> prepare("CALL newPost(:ID, :name, :description, :isEdited, :username, :isArchived)");
-      $result = $statement -> execute(array(':ID' => ,':name'=> $title, ':description'=>$content, ':isEdited' => ,
-        ':username' => , ':isArchived' =>));
-      header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html"); */
+      //$date = strtotime(time, now);
+      //echo "Created date is " . date("Y-m-d h:i:sa", $date);
+      //Posting nformation to database using newPost() method
+      $statement = $dbconnect -> prepare("CALL newPost(:name, :description, :isEdited, :username, :isArchived)");
+      $result = $statement -> execute(array(':name'=> $title, ':description'=>$content, ':isEdited' => 0,
+        ':username' => $username, ':isArchived' => 0));
+      header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
 
     }
 

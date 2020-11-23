@@ -7,7 +7,7 @@
     <h2>
       <a href="Main.html">Home</a>
       <a href="createPost.html">New</a>
-      <a href="Tags.html">Tags</a>
+      <!--<a href="Tags.html">Tags</a>-->
       <form action="search.php">
         <input type="text" id="fname" name="fname" placeholder="Search">
         <input type="submit" value="Submit">
