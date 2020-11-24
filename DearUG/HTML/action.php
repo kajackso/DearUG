@@ -92,15 +92,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h1>Login</h1>
 
         <h2>
-          <a href="Main.html">Home</a>
-          <a href="createPost.html">New</a>
-          <!--<a href="Tags.html">Tags</a>-->
-          <form action="search.php">
-            <input type="text" id="fname" name="fname" placeholder="Search">
-            <input type="submit" value="Submit">
-          </form>
-          <a href="logintest.html">Login</a>
-          <a href="register.php">Register</a>
+        <a href="Main.html">Home</a>
+        <a href="new.php">New</a>
+        <form action="search.php">
+          <input type="text" id="fname" name="fname" placeholder="Search">
+          <input type="submit" value="Submit">
+        </form>
+        <a href="action.php" >Login</a>
+        <a href="register.php">Register</a>
         </h2>
 
         <p>Please fill in your credentials to login.</p>
