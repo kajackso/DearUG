@@ -47,10 +47,12 @@
       //$date = strtotime(time, now);
       //echo "Created date is " . date("Y-m-d h:i:sa", $date);
       //Posting nformation to database using newPost() method
-      $statement = $dbconnect -> prepare("CALL newPost(:name, :description, :isEdited, :username, :isArchived)");
-      $result = $statement -> execute(array(':name'=> $title, ':description'=>$content, ':isEdited' => 0,
-        ':username' => $username, ':isArchived' => 0));
-      header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
+        if(isset($_POST["title"])) {
+            $statement = $dbconnect -> prepare("CALL newPost(:name, :description, :isEdited, :username, :isArchived)");
+            $result = $statement -> execute(array(':name'=> $title, ':description'=>$content, ':isEdited' => 0,
+              ':username' => $username, ':isArchived' => 0));
+              header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
+            }
 
     }
 
