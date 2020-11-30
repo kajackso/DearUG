@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="format.css">
+<meta charset="UTF-8">
+<title>Register</title>
   <body>
   <?php
         $dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
@@ -19,7 +21,7 @@
                               $statement = $dbconnect -> prepare("CALL newUser(:userName, :email, :pass, :Major, :GradDate)");
                               $result = $statement -> execute(array(':userName'=> $_POST['userName'], ':email'=>$_POST['email'], ':pass'=>$_POST['pass'], ':Major'=>$_POST['Major'], ':GradDate'=>$_POST['GradDate']));
                               // Take the user to the login page.
-                              header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Login.html");
+                              header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/action.php");
                             }
                         }
                     }
@@ -34,17 +36,16 @@
 
 
   <!-- HTML code -->
-  <h1>Login</h1>
+  <h1>Register</h1>
   <h2>
-    <a href="Main.html">Home</a>
-    <a href="createPost.html">New</a>
-    <a href="Tags.html">Tags</a>
-    <form action="search.php">
-      <input type="text" id="fname" name="fname" placeholder="Search">
-      <input type="submit" value="Submit">
-    </form>
-    <a href="logintest.html">Login</a>
-    <a href="register.php">Register</a>
+  <a href="Main.html">Home</a>
+  <a href="new.php">New</a>
+  <form action="search.php">
+    <input type="text" id="fname" name="fname" placeholder="Search">
+    <input type="submit" value="Submit">
+  </form>
+  <a href="action.php" >Login</a>
+  <a href="register.php">Register</a>
   </h2>
 
   <form method=post action=register.php>
