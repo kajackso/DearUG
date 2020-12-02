@@ -32,8 +32,8 @@ $link = new mysqli($dbhost, $dbuser, $dbpass,$dbname,$dbport);
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    //header("location: Main.html");
-    //exit;
+    header("location: Main.html");
+    exit;
 }
 
 
@@ -76,8 +76,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
                     if(mysqli_stmt_fetch($stmt)){
+
+
                         //if(password_verify($password, $hashed_password)){
-                        if($password == $hashed_password) {
+                        if(crypt($password,"UG") == $hashed_password) {
                             // Password is correct, so start a new session
                             //session_start();
 
@@ -88,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
                             // Redirect user to main page
-                            //header("location: Main.html");
+                            header("location: Main.html");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
