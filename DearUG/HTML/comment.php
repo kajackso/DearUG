@@ -9,9 +9,9 @@
 
   <body>
     <?php
-    echo "wow";
-        //session_start();
-
+        if(isset($_GET["id"])){
+          $_SESSION["id"] = $_GET["id"];
+        }
         //Specifies login information for the database
         $dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
         $dbuser = 'fisforsuccess_rw';
@@ -25,12 +25,12 @@
 
           //If the form is filled out, it pushes to database
             if(isset($_POST["title"]) || !empty($_POST["title"])) {
-              echo " wesley ";
+
                 $statement = $dbconnect -> prepare("CALL newComment(:name, :username, :description, :isEdited, :postID)");
 
                 $result = $statement -> execute(array(':name'=> $_POST["title"], ':username' => $_SESSION["username"], ':description'=> $_POST["content"],
-                ':isEdited' => 0, ':postID' => 0));
-                  header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Main.html");
+                ':isEdited' => 0, ':postID' => $_SESSION["id"]));
+                //header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Main.html");
             }
       }
 
@@ -43,7 +43,7 @@
 
     ?>
 
-    <h1>New Post</h1>
+    <h1>Comments</h1>
     <!--Banner, links to other pages -->
     <h2>
     <a href="Main.html">Home</a>
@@ -56,12 +56,12 @@
     <a href="register.php">Register</a>
     </h2>
     <!--iframe to display the post-->
-    <iframe id="myframe" src="post.php" style="height:100%;width:35%;position:absolute;top:150px;bottom:0px;left:500px;"></iframe>
+    <span class='iframe-wrapper'><iframe id="myframe" src="singlePost.php" style="height:100%;width:100%;position:relative;"></iframe></span>
     <!--comment form-->
-    <div class="form">
+    <div class="form" style="width:35%;position:absolute;left:500px;">
       <form  method=post action="comment.php">
         <input type="text" id="title" name="title" placeholder="Title"><br/>
-        <textarea id="content" name="content" rows="15" cols="25"></textarea><br/>
+        <textarea id="content" name="content" rows="5" cols="75"></textarea><br/>
         <input type="submit" value="Submit">
       </form>
     </div>
