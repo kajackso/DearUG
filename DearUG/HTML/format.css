@@ -11,6 +11,15 @@ a:link, a:visited {
   text-decoration: none;
 }
 
+/*span*/.iframe-wrapper {
+	width: 50%;
+	height: 275px;
+	display: block;
+	position: relative;
+	/* border: 5px solid blue; */
+  left:400px;
+}
+
 a:hover, a:active {
   background-color: gold;
 }

@@ -8,20 +8,34 @@
         $dbhost = 'mysql:host=classdb.it.mtu.edu;port=3307;dbname=fisforsuccess';
         $dbuser = 'fisforsuccess_rw';
         $dbpass = 'success123';
+        $value = 0;
         try {
+
             // Attempt to connect to database. Check if username, email, password, major, and graddate are all populated.
             $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
             if(isset($_POST["userName"])) {
+              // Check and see if the username already exists.
+              $userName = $_POST['userName'];
+              foreach($dbconnect->query("SELECT username, email from user") as $row){
+                // If it pulls up a match with the selected username, it should set $value to 1.
+                if($row[0] == $userName){
+                  $value = 1;
+                }
+              }
                 if(isset($_POST["email"])){
                     if(isset($_POST["pass"])){
                         if(isset($_POST["Major"])){
                             if(isset($_POST["GradDate"])){
-                              echo $_POST['userName'];
                               // All of the information is populated correctly. We can create a new user using the newUser procedure. Uses a prepared statement to avoid SQL injection.
                               $statement = $dbconnect -> prepare("CALL newUser(:userName, :email, :pass, :Major, :GradDate)");
                               $result = $statement -> execute(array(':userName'=> $_POST['userName'], ':email'=>$_POST['email'], ':pass'=>$_POST['pass'], ':Major'=>$_POST['Major'], ':GradDate'=>$_POST['GradDate']));
                               // Take the user to the login page.
-                              header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/action.php");
+                              if($value == 0){
+                                header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/action.php");
+                              } else {
+                                echo "Invalid arguments. Your username exists. <br>";
+                              }
+
                             }
                         }
                     }
@@ -38,14 +52,15 @@
   <!-- HTML code -->
   <h1>Register</h1>
   <h2>
-  <a href="Main.html">Home</a>
-  <a href="new.php">New</a>
-  <form action="search.php">
-    <input type="text" id="fname" name="fname" placeholder="Search">
-    <input type="submit" value="Submit">
-  </form>
-  <a href="action.php" >Login</a>
-  <a href="register.php">Register</a>
+    <a href="Main.html">Home</a>
+    <a href="createPost.html">New</a>
+    <!--<a href="Tags.html">Tags</a>-->
+    <form action="search.php">
+      <input type="text" id="fname" name="fname" placeholder="Search">
+      <input type="submit" value="Submit">
+    </form>
+    <a href="action.php">Login</a>
+    <a href="register.php">Register</a>
   </h2>
 
   <form method=post action=register.php>
