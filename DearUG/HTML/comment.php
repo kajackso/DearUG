@@ -22,7 +22,7 @@
 
           $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
 
-          
+
           //If the form is filled out, it pushes to database
             if(isset($_POST["title"]) && !empty($_POST["title"]) && isset($_POST["content"]) && !empty($_POST["content"])) {
               // If the username is NULL, take to the login page.
@@ -36,7 +36,7 @@
               }
             }
         }
-        
+
         catch (PDOException $error) {
                 die("ERROR: " . $error->getMessage() . "<br/>");
 
@@ -55,6 +55,7 @@
       <input type="submit" value="Submit">
     </form>
     <a href="action.php" >Login</a>
+    <a href="destroy.php" >Logout</a>
     <a href="register.php">Register</a>
     </h2>
     <!--iframe to display the post-->
