@@ -22,19 +22,21 @@
 
           $dbconnect = new PDO($dbhost, $dbuser, $dbpass);
 
-
+          
           //If the form is filled out, it pushes to database
-            if(isset($_POST["title"]) || !empty($_POST["title"])) {
-
+            if(isset($_POST["title"]) && !empty($_POST["title"]) && isset($_POST["content"]) && !empty($_POST["content"])) {
+              // If the username is NULL, take to the login page.
+              if(isset($_SESSION['username']) && !empty($_SESSION['username'])){
                 $statement = $dbconnect -> prepare("CALL newComment(:name, :username, :description, :isEdited, :postID)");
-
                 $result = $statement -> execute(array(':name'=> $_POST["title"], ':username' => $_SESSION["username"], ':description'=> $_POST["content"],
                 ':isEdited' => 0, ':postID' => $_SESSION["id"]));
-                //header("Location: https://classdb.it.mtu.edu/cs3141/FisForSuccess/Main.html");
+              } else {
+                header("refresh:0;url=https://classdb.it.mtu.edu/cs3141/FisForSuccess/action.php");
+                echo "<script>alert(\"Please login before posting a comment. Sending to the login page...\")</script>";
+              }
             }
-      }
-
-
+        }
+        
         catch (PDOException $error) {
                 die("ERROR: " . $error->getMessage() . "<br/>");
 
@@ -53,7 +55,6 @@
       <input type="submit" value="Submit">
     </form>
     <a href="action.php" >Login</a>
-    <a href="destroy.php" >Logout</a>
     <a href="register.php">Register</a>
     </h2>
     <!--iframe to display the post-->
