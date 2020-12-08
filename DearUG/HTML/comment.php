@@ -50,7 +50,7 @@
     <h2>
     <a href="Main.html">Home</a>
     <a href="new.php">New</a>
-    <form action="search.php">
+    <form method=post action="search.php">
       <input type="text" id="fname" name="fname" placeholder="Search">
       <input type="submit" value="Submit">
     </form>
