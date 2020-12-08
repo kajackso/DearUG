@@ -45,6 +45,7 @@
     <input type="submit" value="Submit">
   </form>
   <a href="action.php" >Login</a>
+  <a href="destroy.php" >Logout</a>
   <a href="register.php">Register</a>
   </h2>
 
